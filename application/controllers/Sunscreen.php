@@ -62,8 +62,10 @@ class Sunscreen extends CI_Controller {
 			);
 			$this->template->load('template', 'sunscreen/sunscreen_form_add', $data);
 		} else{
-			echo "<script>alert('Data tidak ditemukan');"; 
-        	echo "window.location='".site_url('sunscreen')."';</script>";
+			$this->session->set_flashdata('notif_warning', 'Data tidak ditemukan');
+            redirect(site_url('sunscreen'));
+			// echo "<script>alert('Data tidak ditemukan');"; 
+        	// echo "window.location='".site_url('sunscreen')."';</script>";
 		}
 	}
 
@@ -77,9 +79,11 @@ class Sunscreen extends CI_Controller {
 		}
 
 		if($this->db->affected_rows() > 0){
-			echo "<script>alert('Data berhasil disimpan');</script>"; 
+			$this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
+			// echo "<script>alert('Data berhasil disimpan');</script>"; 
 		}
-			echo "<script>window.location='".site_url('sunscreen')."';</script>"; 
+			redirect(site_url('sunscreen'));
+			// echo "<script>window.location='".site_url('sunscreen')."';</script>"; 
 	
 	}
 
@@ -88,8 +92,10 @@ class Sunscreen extends CI_Controller {
        	$this->sunscreen_m->del($id);
 
        	if($this->db->affected_rows() > 0){
-        	echo "<script>alert('Data berhasil dihapus');</script>"; 
-    }
-        	echo "<script>window.location='".site_url('sunscreen')."';</script>"; 
+			$this->session->set_flashdata('notif_success', 'Data berhasil dihapus');
+        	// echo "<script>alert('Data berhasil dihapus');</script>"; 
+		}
+			redirect(site_url('sunscreen'));
+        	// echo "<script>window.location='".site_url('sunscreen')."';</script>"; 
 	}
 }

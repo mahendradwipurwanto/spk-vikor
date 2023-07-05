@@ -29,9 +29,11 @@ class Asal_brand extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->asal_m->add($post);
             if($this->db->affected_rows() > 0){
-                echo "<script>alert('Data berhasil disimpan');</script>"; 
+				$this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
+                // echo "<script>alert('Data berhasil disimpan');</script>"; 
             }
-            echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
+            redirect(site_url('asal_brand'));
+            // echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
         }
     }
 
@@ -47,16 +49,19 @@ class Asal_brand extends CI_Controller {
                 $data['row'] = $query->row();
                 $this->template->load('template', 'asal_brand/asal_form_edit', $data);
             }else{
-                echo "<script>alert('Data tidak ditemukan');"; 
-                echo "window.location='".site_url('asal_brand')."';</script>";
+				$this->session->set_flashdata('notif_warning', 'Data tidak ditemukan');
+                redirect(site_url('asal_brand'));
+                // echo "window.location='".site_url('asal_brand')."';</script>";
             } 
         }else {
             $post = $this->input->post(null, TRUE);
             $this->asal_m->edit($post);
             if($this->db->affected_rows() > 0){
-                echo "<script>alert('Data berhasil disimpan');</script>"; 
+				$this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
+                // echo "<script>alert('Data berhasil disimpan');</script>"; 
             }
-            echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
+            redirect(site_url('asal_brand'));
+            // echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
         }
     }
 
@@ -65,9 +70,11 @@ class Asal_brand extends CI_Controller {
         $this->asal_m->del($id);
  
         if($this->db->affected_rows() > 0){
-         echo "<script>alert('Data berhasil dihapus');</script>"; 
+        $this->session->set_flashdata('notif_success', 'Data berhasil dihapus');
+        //  echo "<script>alert('Data berhasil dihapus');</script>"; 
      }
-     echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
+     redirect(site_url('asal_brand'));
+    //  echo "<script>window.location='".site_url('asal_brand')."';</script>"; 
      }
 
 

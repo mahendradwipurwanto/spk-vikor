@@ -28,9 +28,12 @@ class Jenis_kulit extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->jenis_m->add($post);
             if($this->db->affected_rows() > 0){
-                echo "<script>alert('Data berhasil disimpan');</script>"; 
+                // echo "<script>alert('Data berhasil disimpan');</script>"; 
+				$this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
             }
-            echo "<script>window.location='".site_url('jenis_kulit')."';</script>"; 
+            redirect(site_url('jenis_kulit'));
+            // echo "<script>window.location='".site_url('jenis_kulit')."';</script>";             
+
         }
 
     }
@@ -47,16 +50,20 @@ class Jenis_kulit extends CI_Controller {
                 $data['row'] = $query->row();
                 $this->template->load('template', 'jenis_kulit/jenis_form_edit', $data);
             }else{
-                echo "<script>alert('Data tidak ditemukan');"; 
-                echo "window.location='".site_url('jenis_kulit')."';</script>";
+				$this->session->set_flashdata('notif_warning', 'Data tidak ditemukan');
+                redirect(site_url('jenis_kulit'));
+                // echo "<script>alert('Data tidak ditemukan');"; 
+                // echo "window.location='".site_url('jenis_kulit')."';</script>";
             } 
         }else {
             $post = $this->input->post(null, TRUE);
             $this->jenis_m->edit($post);
             if($this->db->affected_rows() > 0){
-                echo "<script>alert('Data berhasil disimpan');</script>"; 
+				$this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
+                // echo "<script>alert('Data berhasil disimpan');</script>"; 
             }
-            echo "<script>window.location='".site_url('jenis_kulit')."';</script>"; 
+            redirect(site_url('jenis_kulit'));
+            // echo "<script>window.location='".site_url('jenis_kulit')."';</script>"; 
         }
     }
 
@@ -65,9 +72,11 @@ class Jenis_kulit extends CI_Controller {
         $this->jenis_m->del($id);
  
         if($this->db->affected_rows() > 0){
-         echo "<script>alert('Data berhasil dihapus');</script>"; 
+            $this->session->set_flashdata('notif_success', 'Data berhasil dihapus');
+        //  echo "<script>alert('Data berhasil dihapus');</script>"; 
      }
-     echo "<script>window.location='".site_url('jenis_kulit')."';</script>"; 
+     redirect(site_url('jenis_kulit'));
+    //  echo "<script>window.location='".site_url('jenis_kulit')."';</script>"; 
      }
 
 

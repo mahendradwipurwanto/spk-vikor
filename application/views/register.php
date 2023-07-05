@@ -20,6 +20,8 @@
 
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css">
 
+  <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/custom.css?<?= time();?>">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

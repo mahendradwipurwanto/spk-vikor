@@ -17,7 +17,9 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/iCheck/square/blue.css">
 
-	<link rel="stylesheet" href="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css">
+
+  <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/custom.css?<?= time();?>">
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -139,7 +141,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 223000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)

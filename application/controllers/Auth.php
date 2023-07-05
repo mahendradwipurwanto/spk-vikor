@@ -28,18 +28,21 @@ class Auth extends CI_Controller {
 					'level' => $row->level
 				);
 				$this->session->set_userdata($params);
-				
-				echo "<script>
-					alert('Selamat, anda berhasil login');
-					window.location='".site_url('dashboard')."';
-				</script>";
+				$this->session->set_flashdata('notif_success', 'Selamat, anda berhasil login');
+				redirect(site_url('dashboard'));
+				// echo "<script>
+				// 	alert('Selamat, anda berhasil login');
+				// 	window.location='".site_url('dashboard')."';
+				// </script>";
 
 			} else {
+				$this->session->set_flashdata('notif_warning', 'Login anda gagal, username atau password salah');
+				redirect($this->agent->referrer());
 
-				echo "<script>
-					alert('Login anda gagal, username atau password salah');
-					window.location='".site_url('auth/login')."';
-					</script>";
+				// echo "<script>
+				// 	alert('Login anda gagal, username atau password salah');
+				// 	window.location='".site_url('auth/login')."';
+				// 	</script>";
 			}
 		}
 	}
