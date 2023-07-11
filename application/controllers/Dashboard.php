@@ -7,12 +7,12 @@ class Dashboard extends CI_Controller {
     {
         parent::__construct();
 		check_not_login();
-		check_admin();
 		$this->load->model(['sunscreen_m', 'user_m', 'jenis_m', 'asal_m', 'm_perhitungan']);
     }
 
 	public function index()
 	{
+		check_admin();
 		// $data['row'] = $this->sunscreen_m->get();
 		$query_sunscreen = $this->sunscreen_m->getJumlahDataSunscreen();
 		$query_user = $this->user_m->getJumlahDataUser(); 

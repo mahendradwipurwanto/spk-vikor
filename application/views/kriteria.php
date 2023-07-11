@@ -22,7 +22,9 @@
 								<option selected="selected">-- Pilih jenis kulit anda --</option>
 								<?php if(!empty($jenis_kulit)):?>
 								<?php foreach($jenis_kulit as $key => $val):?>
+								<?php if($val->idJenisKulit > 1):?>
 								<option value="<?= $val->idJenisKulit;?>"><?= $val->jenisKulit;?></option>
+								<?php endif;?>
 								<?php endforeach;?>
 								<?php endif;?>
 							</select>
@@ -40,14 +42,22 @@
 						</div>
 						<div class="form-group">
 							<label>Harga</label>
-							<div class="input-group">
-								<span class="input-group-addon">Rp.</span>
-								<input type="text" class="form-control" name="harga" placeholder="10000" min="0" required>
-							</div>
+							<select class="form-control select2" style="width: 100%;" name="harga" required>
+								<option selected="selected">-- Pilih rentang harga --</option>
+								<option value="0,100000">0 - 100k</option>
+								<option value="100000,200000">100k - 200k</option>
+								<option value="200000,300000">200k - 300k</option>
+								<option value="300000,400000">300k - 400k</option>
+								<option value="400000">> 400k</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>SPF</label>
-							<input type="text" name="spf" class="form-control" min="0" required>
+							<select class="form-control select2" style="width: 100%;" name="spf" required>
+								<option selected="selected">-- Pilih rentang harga --</option>
+								<option value="0,50">0 - 50</option>
+								<option value="51,100">51 - 100</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Protection Grade</label>

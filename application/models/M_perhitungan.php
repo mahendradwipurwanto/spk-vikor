@@ -35,11 +35,23 @@ class M_perhitungan extends CI_Model {
         }
         
         if(isset($filter['harga']) && !empty($filter['harga'])){
-            $this->db->where('sunscreen.harga', $filter['harga']);
+            if($filter['harga'] == "400000"){
+                $this->db->where('harga >', 400000);
+            }else{
+                $harga = explode(",", $filter['harga']);
+                $this->db->where('harga >=', $harga[0]);
+                $this->db->where('harga <=', $harga[1]);
+            }
         }
         
         if(isset($filter['spf']) && !empty($filter['spf'])){
-            $this->db->where('sunscreen.spf', $filter['spf']);
+            if($filter['harga'] == "400000"){
+                $this->db->where('harga >', 400000);
+            }else{
+                $spf = explode(",", $filter['spf']);
+                $this->db->where('sunscreen.spf >=', $spf[0]);
+                $this->db->where('sunscreen.spf <=', $spf[1]);
+            }
         }
         
         if(isset($filter['protectionGrade']) && !empty($filter['protectionGrade'])){
@@ -69,7 +81,8 @@ class M_perhitungan extends CI_Model {
     public function getAllBobot($filter = []){
 
         $this->db->select('*')
-        ->from('kriteria_bobot');
+        ->from('kriteria_bobot')
+        ->where('user_id', $this->session->userdata('idUser'));
         
         if(isset($filter['name']) && !empty($filter['name'])){
             $this->db->where_in('kriteria_bobot.name', $filter['name']);
@@ -81,8 +94,57 @@ class M_perhitungan extends CI_Model {
         if(!empty($query)){
             foreach($query as $key => $val){
                 $arr[$key]['id'] = $val->id;
+                $arr[$key]['user_id'] = $val->user_id;
                 $arr[$key]['name'] = $val->name;
                 $arr[$key]['weight'] = (float) $val->weight;
+            }
+        }else{
+            $user_id = $this->session->userdata('idUser');
+            $data = [
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Price',
+                        'weight' => 0.25,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'SPF',
+                        'weight' => 0.1875,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Protection Grade',
+                        'weight' => 0.1875,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Rating',
+                        'weight' => 0.125,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Berat',
+                        'weight' => 0.125,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Users Recommend',
+                        'weight' => 0.0625,
+                    ],
+                    [
+                        'user_id' => $user_id,
+                        'name' => 'Users Repurchase',
+                        'weight' => 0.0625,
+                    ]
+                ];
+
+            foreach ($data as $key => $val) {
+                $arr[$key]['user_id'] = $val['user_id'];
+                $arr[$key]['name'] = $val['name'];
+                $arr[$key]['weight'] = (float) $val['weight'];
+
+                $this->db->insert('kriteria_bobot', $arr[$key]);
+                $arr[$key]['id'] = $this->db->insert_id();
             }
         }
         return $arr;
@@ -93,6 +155,19 @@ class M_perhitungan extends CI_Model {
         $bobot = $this->getAllBobot();
 
         if (!empty($bobot)) {
+            $total_weight = 0;
+            foreach ($bobot as $key => $val) {
+                $weight = (float) $this->input->post($val['id']);
+                $total_weight = $total_weight + $weight;
+            }
+
+            if($total_weight > 1){
+                return [
+                    'status' => false,
+                    'message' => "Total bobot lebih dari 1"
+                ];
+            }
+
             $this->db->trans_begin();
 
             foreach ($bobot as $key => $val) {
@@ -106,8 +181,7 @@ class M_perhitungan extends CI_Model {
                     ];
                     break;
                 }
-
-                $this->db->where('id', (int) $val['id']);
+                $this->db->where(['user_id' => $this->session->userdata('idUser'), 'id' => (int) $val['id']]);
                 $this->db->update('kriteria_bobot', ['weight' => $weight]);
             }
 

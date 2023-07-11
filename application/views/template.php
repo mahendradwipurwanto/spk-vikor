@@ -160,10 +160,16 @@
 					<li class="<?= ($this->uri->segment(1) == "dashboard-user" ? "active" : "") ?>">
 						<a href="<?=site_url('dashboard-user')?>"> <i class="fa fa-dashboard"></i> <span>Halaman Utama</span> </a>
 					</li>
+					<li class="header">Master</li>
 					<li class="<?= ($this->uri->segment(1) == "sunscreen-user" ? "active" : "") ?>">
 						<a href="<?=site_url('sunscreen-user')?>"> <i class="fa fa-folder-open-o"></i> <span>Data Sunscreen</span>
 						</a>
 					</li>
+					<li class="<?= ($this->uri->segment(1) == "bobot-kriteria" ? "active" : "") ?>">
+						<a href="<?=site_url('bobot-kriteria')?>"> <i class="fa fa-bookmark-o"></i> <span>Bobot Kriteria</span>
+						</a>
+					</li>
+					<li class="header">Perhitungan</li>
 					<li class="<?= ($this->uri->segment(1) == "kriteria" ? "active" : "") ?>">
 						<a href="<?=site_url('kriteria')?>"> <i class="fa fa-list-alt"></i> <span>Kriteria</span> </a>
 					</li>

@@ -59,8 +59,8 @@
 								<ul>
 									<li><b>Jenis Kulit :</b> <?= $perhitungan_aktif['params']->jenisKulit;?></li>
 									<li><b>Asal Brand :</b> <?= $perhitungan_aktif['params']->asalBrand;?></li>
-									<li><b>Harga :</b> Rp.<?= $perhitungan_aktif['params']->harga;?></li>
-									<li><b>SPF :</b> <?= $perhitungan_aktif['params']->spf;?></li>
+									<li><b>Harga :</b> <?= str_replace(',', ' - ', $perhitungan_aktif['params']->harga);?></li>
+									<li><b>SPF :</b> <?= str_replace(',', ' - ', $perhitungan_aktif['params']->spf);?></li>
 									<li><b>Protection Grade :</b> <?= $perhitungan_aktif['params']->protection;?></li>
 								</ul>
 							</li>
