@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
 		check_not_login();
 		check_admin();
-		$this->load->model(['sunscreen_m', 'user_m', 'jenis_m', 'asal_m']);
+		$this->load->model(['sunscreen_m', 'user_m', 'jenis_m', 'asal_m', 'm_perhitungan']);
     }
 
 	public function index()
@@ -28,5 +28,24 @@ class Dashboard extends CI_Controller {
 
 		// $data['row'] = $this->sunscreen_m->getJumlahDataSunscreen();
 		$this->template->load('template', 'dashboard', $data);
+	}
+
+	public function bobot_kriteria()
+	{
+		$data['bobot_kriteria'] = $this->m_perhitungan->getAllBobot();
+		$this->template->load('template', 'bobot_kriteria', $data);
+	}
+
+	public function save_bobot(){
+		
+		$save = $this->m_perhitungan->save_bobot();
+
+		if($save['status']){
+			$this->session->set_flashdata('notif_success', 'Berhasil menyimpan perubahan');
+			redirect($this->agent->referrer());
+		}else{
+			$this->session->set_flashdata('notif_warning', $save['message']);
+			redirect($this->agent->referrer());
+		}
 	}
 }
