@@ -16,7 +16,7 @@ class Vikor {
         $matrix = $this->generate_matrix($alternatives);
 
         // 2. Menghitung Benefit dan Cost
-        $benefit_cost = $this->calculate_benefit_cost($matrix);
+        $benefit_cost = $this->calculate_benefit_cost($matrix['list']);
 
         // 3. Normalisasi Bobot (n*b)
         $normalized_weights = $this->normalize_weights($criteria_weights, $benefit_cost);
@@ -47,13 +47,49 @@ class Vikor {
 
     protected function generate_matrix($alternatives)
     {
-        $matrix = array();
+        $matrix = [];
+        $max = [];
+        $min = [];
+
         foreach ($alternatives as $key => $val) {
             $id = $val["id"];
             unset($val["id"]);
             $matrix[$id] = array_values($val);
         }
-        return $matrix;
+
+        $price = min_max_value($matrix, 1);
+        $spf = min_max_value($matrix, 2);
+        $protection = min_max_value($matrix, 3);
+        $rating = min_max_value($matrix, 4);
+        $berat = min_max_value($matrix, 5);
+        $users_recommend = min_max_value($matrix, 6);
+        $users_repurchase = min_max_value($matrix, 7);
+        
+        $max = [
+            $price['max'],
+            $spf['max'],
+            $protection['max'],
+            $rating['max'],
+            $berat['max'],
+            $users_recommend['max'],
+            $users_repurchase['max'],
+        ];
+        
+        $min = [
+            $price['min'],
+            $spf['min'],
+            $protection['min'],
+            $rating['min'],
+            $berat['min'],
+            $users_recommend['min'],
+            $users_repurchase['min'],
+        ];
+
+        return [
+            'list' => $matrix,
+            'max' => $max,
+            'min' => $min
+        ];
     }
 
     protected function calculate_benefit_cost($matrix)
@@ -92,7 +128,7 @@ class Vikor {
                 }
 
                 // calc
-                $arr[$key]['calc'] = round_custom($rumus['calc'], $round, true);
+                $arr[$key]['calc'] = round_custom($rumus['calc'], $round, false);
                 $arr[$key]['rumus'] = $rumus['rumus'];
             }
 
@@ -114,7 +150,7 @@ class Vikor {
                     $round = 4;
                 }
 
-                $rumus['calc'] = round_custom($val['calc']*$criteria_weights[$key]['weight'], $round, true);
+                $rumus['calc'] = round_custom($val['calc']*$criteria_weights[$key]['weight'], $round, false);
                 $rumus['rumus'] = "{$val['calc']}*{$criteria_weights[$key]['weight']}";
 
                 $arr[$key]['rumus'] = $rumus['rumus'];
@@ -196,7 +232,6 @@ class Vikor {
                 });
             }
         }
-
         return $ranked_results;
     }
 
@@ -208,11 +243,12 @@ class Vikor {
             $acceptable_advantage['dq'] = safeDivision(1,(count($alternatives)-1));
             
             foreach ($ranked_results as $key => $val){
-                $acceptable_advantage['v'][$key]['key'] = "v={$veto[$key]}, 𝑄(𝐴2) - 𝑄(𝐴1)";
                 if(count($val) > 1){
                     $acceptable_advantage['v'][$key]['value'] = $val[1]['raw']-$val[0]['raw'];
+                    $acceptable_advantage['v'][$key]['key'] = "v={$veto[$key]}, 𝑄({$val[1]['raw']}) - 𝑄({$val[0]['raw']})";
                 }else{
                     $acceptable_advantage['v'][$key]['value'] = $val[0]['raw']-$val[0]['raw'];
+                    $acceptable_advantage['v'][$key]['key'] = "v={$veto[$key]}, 𝑄({val[0]['raw']}) - 𝑄({val[0]['raw']})";
                 }
                 $acceptable_advantage['v'][$key]['veto'] = $key;
                 $acceptable_advantage['v'][$key]['acceptable'] = false;
@@ -227,7 +263,7 @@ class Vikor {
                     return $currentDifference < $closestDifference ? $item : $carry;
                 }
             );
-    
+            // ej($acceptable_advantage);
             $acceptable_advantage['v'][$closestValue['veto']]['acceptable'] = true;
             return [
                 'acceptable_advantage' => $acceptable_advantage,

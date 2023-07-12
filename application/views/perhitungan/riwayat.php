@@ -80,7 +80,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="matrix">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -90,7 +90,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<?php foreach ($row as $value): ?>
@@ -99,6 +99,20 @@
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
+				<tfoot class="bg-gray disabled color-palette">
+					<tr>
+						<th colspan="2">Max</th>
+						<?php foreach ($matrix['max'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+					<tr>
+						<th colspan="2">Min</th>
+						<?php foreach ($matrix['min'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<hr>
@@ -107,7 +121,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="benefit-cost">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -136,7 +150,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="bobot">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -165,7 +179,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="si-ri">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th colspan="2">Max</th>
 						<th><span class="result"
@@ -213,7 +227,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="veto">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -223,7 +237,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$index]['name']; ?></td>
@@ -243,7 +257,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="sort">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>Peringkat</th>
 						<th>Sunscreen</th>
@@ -268,7 +282,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="acceptable">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>DQ</th>
@@ -358,7 +372,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<?php foreach ($row as $value): ?>
@@ -491,7 +505,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$index]['name']; ?></td>

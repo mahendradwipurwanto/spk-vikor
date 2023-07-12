@@ -21,7 +21,8 @@
 		<div class="row">
 			<div class="col-sm-12 col-md-6">
 				<ul>
-					<li><b>Waktu perhitungan :</b> <?= date("d F Y H:i", $perhitungan_aktif['params']->created_at);?></li>
+					<li><b>Waktu perhitungan :</b> <?= date("d F Y H:i", $perhitungan_aktif['params']->created_at);?>
+					</li>
 					<li><b>Total data :</b> <?= $perhitungan_aktif['params']->total_data;?></li>
 				</ul>
 			</div>
@@ -48,7 +49,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="matrix">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -58,7 +59,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<?php foreach ($row as $value): ?>
@@ -67,6 +68,20 @@
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
+				<tfoot class="bg-gray disabled color-palette">
+					<tr>
+						<th colspan="2">Max</th>
+						<?php foreach ($matrix['max'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+					<tr>
+						<th colspan="2">Min</th>
+						<?php foreach ($matrix['min'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<hr>
@@ -75,7 +90,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="benefit-cost">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -104,7 +119,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="bobot">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -133,7 +148,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="si-ri">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th colspan="2">Max</th>
 						<th><span class="result"
@@ -181,7 +196,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="veto">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -191,7 +206,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$index]['name']; ?></td>
@@ -211,15 +226,15 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="sort">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>Peringkat</th>
 						<th>Sunscreen</th>
-						<th><?= $val; ?></th>
+						<th><?= $ranked_results['veto']; ?></th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php ;$no=1; foreach ($ranked_results as $index => $row): ?>
+					<?php ;$no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$row['id']]['name']; ?></td>
@@ -236,7 +251,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="acceptable">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>DQ</th>
@@ -316,7 +331,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="matrix">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -326,7 +341,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<?php foreach ($row as $value): ?>
@@ -335,6 +350,20 @@
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
+				<tfoot class="bg-gray disabled color-palette">
+					<tr>
+						<th colspan="2">Max</th>
+						<?php foreach ($matrix['max'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+					<tr>
+						<th colspan="2">Min</th>
+						<?php foreach ($matrix['min'] as $val): ?>
+						<th><?= $val;?></th>
+						<?php endforeach; ?>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<hr>
@@ -343,7 +372,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="benefit-cost">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -372,7 +401,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="bobot">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -401,7 +430,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="si-ri">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th colspan="2">Max</th>
 						<th><span class="result"
@@ -449,7 +478,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="veto">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>Sunscreen</th>
@@ -459,7 +488,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($matrix as $index => $row): ?>
+					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$index]['name']; ?></td>
@@ -479,7 +508,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="sort">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>Peringkat</th>
 						<th>Sunscreen</th>
@@ -504,7 +533,7 @@
 		</div>
 		<div class="box-body">
 			<table class="table table-bordered table-hover dataTables w-100" id="acceptable">
-				<thead>
+				<thead class="bg-gray disabled color-palette">
 					<tr>
 						<th>No</th>
 						<th>DQ</th>
