@@ -40,7 +40,7 @@ class Perhitungan extends CI_Controller {
         $bobot = $this->m_perhitungan->getAllBobot();
         
         // Data dummy
-        $data['alternatives'] = $products;
+        $data['alternatives'] = $products["raw"];
         
         // Bobot kriteria
         $data['criteria_weights'] = $bobot;
@@ -52,7 +52,7 @@ class Perhitungan extends CI_Controller {
         ];
 
         // Menghitung perhitungan VIKOR
-        $result = $this->vikor->calculate_vikor($data['alternatives'], $data['criteria_weights'], $data['veto']);
+        $result = $this->vikor->calculate_vikor($products["calc"], $data['criteria_weights'], $data['veto']);
         
         $data = array_merge($data, $result);
         // ej($data);
@@ -68,18 +68,17 @@ class Perhitungan extends CI_Controller {
             'spf' => $this->input->post('spf'),
             'protectionGrade' => ($this->input->post('protectionGrade')),
         ];
-        
-        $containsZero = in_array(0, array_values($filter));
-
-        if($containsZero){
-			$this->session->set_flashdata('notif_warning', 'Harap pilih semua kriteria!');
-			redirect($this->agent->referrer());
+        foreach ($filter as $key => $val) {
+            if($val === "0"){
+                $this->session->set_flashdata('notif_warning', 'Harap pilih semua kriteria!');
+                redirect($this->agent->referrer());
+            }
         }
 
         $products = $this->m_perhitungan->getAllProducts($filter);
 
         $save = [
-            'total_data' => count($products),
+            'total_data' => count($products["raw"]),
         ];
 
         $params = array_merge($save, $filter);
@@ -166,7 +165,7 @@ class Perhitungan extends CI_Controller {
         $bobot = $this->m_perhitungan->getAllBobot();
         
         // Data dummy
-        $data['alternatives'] = $products;
+        $data['alternatives'] = $products["raw"];
         
         // Bobot kriteria
         $data['criteria_weights'] = $bobot;
@@ -178,7 +177,7 @@ class Perhitungan extends CI_Controller {
         ];
 
         // Menghitung perhitungan VIKOR
-        $result = $this->vikor->calculate_vikor($data['alternatives'], $data['criteria_weights'], $data['veto']);
+        $result = $this->vikor->calculate_vikor($products["calc"], $data['criteria_weights'], $data['veto']);
         
         $data = array_merge($data, $result);
         // ej($data);

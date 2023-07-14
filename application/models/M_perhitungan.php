@@ -176,10 +176,10 @@ class M_perhitungan extends CI_Model {
                 $total_weight = $total_weight + $weight;
             }
 
-            if($total_weight > 1){
+            if($total_weight != 1){
                 return [
                     'status' => false,
-                    'message' => "Total bobot lebih dari 1"
+                    'message' => "Total bobot harus sama dengan 1 !"
                 ];
             }
 
