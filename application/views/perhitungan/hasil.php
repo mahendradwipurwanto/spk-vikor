@@ -17,7 +17,8 @@
 <?php if($this->session->userdata('level') == 2 && $perhitungan_aktif['status']):?>
 <section class="p-1 px-15">
 	<div class="callout callout-info" style="margin-bottom: 0!important;">
-		<h4><i class="fa fa-info"></i> Informasi perhitungan:</h4>
+		<!-- <h4><i class="fa fa-info"></i> Informasi perhitungan:</h4> -->
+		<h4>Berikut hasil rekomendasi data sunscreen yang anda pilih melalui fitur kriteria :</h4>
 		<div class="row">
 			<div class="col-sm-12 col-md-6">
 				<ul>
@@ -53,19 +54,21 @@
 					<tr>
 						<th>Peringkat</th>
 						<th>Sunscreen</th>
-						<th><?= $ranked_results['veto']; ?></th>
+						<th>Lihat Produk</th>
+						<!-- <th><?= $ranked_results['veto']; ?></th> -->
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
-					<?php if($no <= 10):?>
+					<?php ;$no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$row['id']]['name']; ?></td>
-						<td><span class="result" data-original="<?= $row['calc']; ?>"><?= $row['calc']; ?></span>
+						<td>
+							<a href="<?= $alternatives[$row['id']]['link']; ?>" class="btn btn-primary btn-sm" target="_blank"><i
+									class="fa fa-external-link"></i></a>
 						</td>
+						<!-- <td><span class="result" data-original="<?= $row['calc']; ?>"><?= $row['calc']; ?></span></td> -->
 					</tr>
-					<?php endif;?>
 					<?php endforeach; ?>
 				</tbody>
 			</table>

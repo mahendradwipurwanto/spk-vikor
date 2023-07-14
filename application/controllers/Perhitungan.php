@@ -69,6 +69,13 @@ class Perhitungan extends CI_Controller {
             'protectionGrade' => ($this->input->post('protectionGrade')),
         ];
         
+        $containsZero = in_array(0, array_values($filter));
+
+        if($containsZero){
+			$this->session->set_flashdata('notif_warning', 'Harap pilih semua kriteria!');
+			redirect($this->agent->referrer());
+        }
+
         $products = $this->m_perhitungan->getAllProducts($filter);
 
         $save = [
@@ -115,7 +122,7 @@ class Perhitungan extends CI_Controller {
         $bobot = $this->m_perhitungan->getAllBobot();
         
         // Data dummy
-        $data['alternatives'] = $products;
+        $data['alternatives'] = $products['raw'];
         
         // Bobot kriteria
         $data['criteria_weights'] = $bobot;
@@ -125,9 +132,8 @@ class Perhitungan extends CI_Controller {
             2 => 0.5,
             3 => 0.75
         ];
-
         // Menghitung perhitungan VIKOR
-        $result = $this->vikor->calculate_vikor($data['alternatives'], $data['criteria_weights'], $data['veto']);
+        $result = $this->vikor->calculate_vikor($products['calc'], $data['criteria_weights'], $data['veto']);
         
         $data = array_merge($data, $result);
         // ej($data);

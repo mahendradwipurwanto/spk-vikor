@@ -173,9 +173,9 @@
 					<li class="<?= ($this->uri->segment(1) == "kriteria" ? "active" : "") ?>">
 						<a href="<?=site_url('kriteria')?>"> <i class="fa fa-list-alt"></i> <span>Kriteria</span> </a>
 					</li>
-					<li class="<?= ($this->uri->segment(1) == "perhitungan" ? "active" : "") ?>">
+					<!-- <li class="<?= ($this->uri->segment(1) == "perhitungan" ? "active" : "") ?>">
 						<a href="<?=site_url('perhitungan')?>"> <i class="fa fa-calculator"></i> <span>Perhitungan</span> </a>
-					</li>
+					</li> -->
 					<li class="<?= ($this->uri->segment(1) == "rekomendasi" ? "active" : "") ?>">
 						<a href="<?=site_url('rekomendasi')?>"> <i class="fa fa-thumbs-o-up"></i> <span>Rekomendasi</span> </a>
 					</li>

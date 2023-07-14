@@ -29,7 +29,8 @@ class Sunscreen_m extends CI_Model {
             'idJenisKulit' => $post['jenis'],
             'idAsalBrand' => $post['asal'],
             'namaPerusahaan' => $post['nameCompany'],
-            'gambar' => $post['link']
+            'gambar' => $post['link'],
+            'link' => $post['url']
             
         ];
         $this->db->insert('sunscreen', $params);
@@ -48,7 +49,8 @@ class Sunscreen_m extends CI_Model {
             'idJenisKulit' => $post['jenis'],
             'idAsalBrand' => $post['asal'],
             'namaPerusahaan' => $post['nameCompany'],
-            'gambar' => $post['link']
+            'gambar' => $post['link'],
+            'link' => $post['url']
         ];
         $this->db->where('idSunscreen', $post['id']);
         $this->db->update('sunscreen', $params);

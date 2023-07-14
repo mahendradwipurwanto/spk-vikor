@@ -19,7 +19,7 @@
 						<div class="form-group">
 							<label>Jenis Kulit</label>
 							<select class="form-control select2" style="width: 100%;" name="jenis_kulit" required>
-								<option selected="selected">-- Pilih jenis kulit anda --</option>
+								<option selected="selected" value="0">-- Pilih jenis kulit anda --</option>
 								<?php if(!empty($jenis_kulit)):?>
 								<?php foreach($jenis_kulit as $key => $val):?>
 								<?php if($val->idJenisKulit > 1):?>
@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label>Asal Brand</label>
 							<select class="form-control select2" style="width: 100%;" name="asal_brand" required>
-								<option selected="selected">-- Pilih asal brand --</option>
+								<option selected="selected" value="0">-- Pilih asal brand --</option>
 								<?php if(!empty($asal_brand)):?>
 								<?php foreach($asal_brand as $key => $val):?>
 								<option value="<?= $val->idAsalBrand;?>"><?= $val->asalBrand;?></option>
@@ -43,7 +43,7 @@
 						<div class="form-group">
 							<label>Harga</label>
 							<select class="form-control select2" style="width: 100%;" name="harga" required>
-								<option selected="selected">-- Pilih rentang harga --</option>
+								<option selected="selected" value="0">-- Pilih rentang harga --</option>
 								<option value="0,100000">0 - 100k</option>
 								<option value="100000,200000">100k - 200k</option>
 								<option value="200000,300000">200k - 300k</option>
@@ -54,7 +54,7 @@
 						<div class="form-group">
 							<label>SPF</label>
 							<select class="form-control select2" style="width: 100%;" name="spf" required>
-								<option selected="selected">-- Pilih rentang harga --</option>
+								<option selected="selected" value="0">-- Pilih rentang harga --</option>
 								<option value="0,50">0 - 50</option>
 								<option value="51,100">51 - 100</option>
 							</select>
@@ -62,7 +62,7 @@
 						<div class="form-group">
 							<label>Protection Grade</label>
 							<select class="form-control select2" style="width: 100%;" name="protectionGrade" required>
-								<option selected="selected">-- Pilih protection grade --</option>
+								<option selected="selected" value="0">-- Pilih protection grade --</option>
 								<option value="Tidak ada">Tidak ada</option>
 								<option value="PA+">PA+</option>
 								<option value="PA++">PA++</option>

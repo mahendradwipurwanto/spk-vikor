@@ -39,10 +39,10 @@
                                 <i class="fa fa-pencil"></i>
                                 </a>
 
-                                <input type="hidden" name="idAsalBrand" value="<?=$data->idAsalBrand?>">
+                                <!-- <input type="hidden" name="idAsalBrand" value="<?=$data->idAsalBrand?>">
                                 <button class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i>
-                                </button>
+                                </button> -->
                          </form>
                     </td>
 

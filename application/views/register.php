@@ -37,7 +37,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="<?=base_url()?>assets/index2.html"><b>Admin</b>LTE</a>
+    <a href="<?=base_url()?>assets/index2.html"><b>SPK Sunscreen</b></a>
   </div>
 
   <div class="register-box-body">

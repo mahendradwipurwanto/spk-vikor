@@ -39,10 +39,10 @@
                                 <i class="fa fa-pencil"></i>
                                 </a>
 
-                                <input type="hidden" name="idJenisKulit" value="<?=$data->idJenisKulit?>">
+                                <!-- <input type="hidden" name="idJenisKulit" value="<?=$data->idJenisKulit?>">
                                 <button onclick="return confirm('Apakah anda yakin menghapus data ini?')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i>
-                                </button>
+                                </button> -->
                           </form>
                     </td>
                 </tr>
