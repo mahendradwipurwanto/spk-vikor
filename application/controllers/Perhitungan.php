@@ -86,7 +86,7 @@ class Perhitungan extends CI_Controller {
         $save = $this->m_perhitungan->savePerhitungan($params);
         if($save){
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat perhitungan, anda dapat melihat perhitungan yang aktif di menu perhitungan dan rekomendasi');
-			redirect(site_url('perhitungan'));
+			redirect(site_url('rekomendasi'));
 		}else{
 			$this->session->set_flashdata('notif_warning', 'Terjadi kesalahan saat mencoba membuat perhitungan');
 			redirect($this->agent->referrer());

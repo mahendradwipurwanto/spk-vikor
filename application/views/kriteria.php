@@ -2,7 +2,7 @@
 	<h1>Kriteria
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="<?=site_url('dashboard_user')?>"><i class="fa fa-dashboard"></i> Halaman Utama</a></li>
+		<li><a href="<?= site_url('dashboard_user') ?>"><i class="fa fa-dashboard"></i> Halaman Utama</a></li>
 		<li class="active">Kriteria</li>
 	</ol>
 </section>
@@ -15,29 +15,29 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<form action="<?= site_url('perhitungan/hitung');?>" method="post">
+					<form id="myForm" action="<?= site_url('perhitungan/hitung'); ?>" method="post">
 						<div class="form-group">
 							<label>Jenis Kulit</label>
 							<select class="form-control select2" style="width: 100%;" name="jenis_kulit" required>
 								<option value="0">-- Pilih jenis kulit anda --</option>
-								<?php if(!empty($jenis_kulit)):?>
-								<?php foreach($jenis_kulit as $key => $val):?>
-								<?php if($val->idJenisKulit > 1):?>
-								<option value="<?= $val->idJenisKulit;?>"><?= $val->jenisKulit;?></option>
-								<?php endif;?>
-								<?php endforeach;?>
-								<?php endif;?>
+								<?php if (!empty($jenis_kulit)) : ?>
+									<?php foreach ($jenis_kulit as $key => $val) : ?>
+										<?php if ($val->idJenisKulit > 1) : ?>
+											<option value="<?= $val->idJenisKulit; ?>"><?= $val->jenisKulit; ?></option>
+										<?php endif; ?>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Asal Brand</label>
 							<select class="form-control select2" style="width: 100%;" name="asal_brand" required>
 								<option value="0">-- Pilih asal brand --</option>
-								<?php if(!empty($asal_brand)):?>
-								<?php foreach($asal_brand as $key => $val):?>
-								<option value="<?= $val->idAsalBrand;?>"><?= $val->asalBrand;?></option>
-								<?php endforeach;?>
-								<?php endif;?>
+								<?php if (!empty($asal_brand)) : ?>
+									<?php foreach ($asal_brand as $key => $val) : ?>
+										<option value="<?= $val->idAsalBrand; ?>"><?= $val->asalBrand; ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</select>
 						</div>
 						<div class="form-group">
@@ -82,3 +82,38 @@
 	</div>
 
 </section>
+<script>
+	document.getElementById("myForm").addEventListener("submit", function(event) {
+		// Prevent form submission
+		event.preventDefault();
+
+		// Get all select elements
+		var selects = document.getElementsByTagName("select");
+
+		// Flag to track if any select has value 0
+		var hasZeroValue = false;
+
+		// Check each select element
+		for (var i = 0; i < selects.length; i++) {
+			if (selects[i].value === "0") {
+				hasZeroValue = true;
+				break;
+			}
+		}
+
+		// Display SweetAlert2 toast if any select has value 0
+		if (hasZeroValue) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Harap pilih semua kriteria!',
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 3000
+			});
+		} else {
+			// Continue with form submission
+			event.target.submit();
+		}
+	});
+</script>

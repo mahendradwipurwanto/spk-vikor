@@ -21,7 +21,7 @@
 						<th width="50px">Harga</th>
 						<th width="50px">SPF</th>
 						<th width="50px">Netto</th>
-						<th width="50px">Link</th>
+						<!-- <th width="50px">Link</th> -->
 						<th>Aksi</th>
 					</tr>
 				</thead>
@@ -34,10 +34,10 @@
 						<td><?=$data->harga?></td>
 						<td><?=$data->spf?></td>
 						<td><?=$data->berat?></td>
-						<td>
+						<!-- <td>
 							<a href="<?= is_null($data->link) ? 'https://www.sociolla.com/140-skin-care' : $data->link; ?>"
 								class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-external-link"></i></a>
-						</td>
+						</td> -->
 						<td width="160px">
 							<a id="detail" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-detail"
 								data-name="<?=$data->namaProduk?>" data-price="<?=$data->harga?>" data-spf="<?=$data->spf?>"
