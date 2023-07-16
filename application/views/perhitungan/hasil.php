@@ -59,7 +59,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php ;$no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
+					<?php $no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
+					<?php if($no <= 10):?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$row['id']]['name']; ?></td>
@@ -69,6 +70,7 @@
 						</td>
 						<!-- <td><span class="result" data-original="<?= $row['calc']; ?>"><?= $row['calc']; ?></span></td> -->
 					</tr>
+					<?php endif;?>
 					<?php endforeach; ?>
 				</tbody>
 			</table>
@@ -156,23 +158,6 @@
 	</div>
 
 </section>
-<div class="floating-card">
-	<button class="trigger-button"></button>
-	<div class="card-content">
-		<fieldset>
-			<div class="btn-group-custom">
-				<label class="mb-0">
-					<input type="radio" class="radio-group" name="conversion" value="number" checked />
-					<span>Satuan</span>
-				</label>
-				<label class="mb-0">
-					<input type="radio" class="radio-group" name="conversion" value="percentage" />
-					<span>Persen</span>
-				</label>
-			</div>
-		</fieldset>
-	</div>
-</div>
 
 <script>
 	const floatingCard = document.querySelector('.floating-card');

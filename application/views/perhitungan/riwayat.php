@@ -76,183 +76,6 @@
 <section class="content">
 	<div class="box">
 		<div class="box-header">
-			<h3 class="box-title fw-bold">1. Matrix</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="matrix">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th>No</th>
-						<th>Sunscreen</th>
-						<?php foreach ($criteria_weights as $value): ?>
-						<td><?= $value['name']; ?></td>
-						<?php endforeach; ?>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
-					<tr>
-						<td><?= $no++; ?></td>
-						<?php foreach ($row as $value): ?>
-						<td><?= $value; ?></td>
-						<?php endforeach; ?>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-				<tfoot class="bg-gray disabled color-palette">
-					<tr>
-						<th colspan="2">Max</th>
-						<?php foreach ($matrix['max'] as $val): ?>
-						<th><?= $val;?></th>
-						<?php endforeach; ?>
-					</tr>
-					<tr>
-						<th colspan="2">Min</th>
-						<?php foreach ($matrix['min'] as $val): ?>
-						<th><?= $val;?></th>
-						<?php endforeach; ?>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-		<hr>
-		<div class="box-header">
-			<h3 class="box-title fw-bold">2. Perhitungan Benefit and Cost</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="benefit-cost">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th>No</th>
-						<th>Sunscreen</th>
-						<?php foreach ($criteria_weights as $value): ?>
-						<td><?= $value['name']; ?></td>
-						<?php endforeach; ?>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1; foreach ($benefit_cost as $index => $row): ?>
-					<tr>
-						<td><?= $no++; ?></td>
-						<td><?= $alternatives[$index]['name']; ?></td>
-						<?php foreach ($row as $value): ?>
-						<td><span class="result" data-original="<?= $value['calc']; ?>"><?= $value['calc']; ?></span>
-						</td>
-						<?php endforeach; ?>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-		<hr>
-		<div class="box-header">
-			<h3 class="box-title fw-bold">3. Normalisasi Bobot (n*b)</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="bobot">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th>No</th>
-						<th>Sunscreen</th>
-						<?php foreach ($criteria_weights as $value): ?>
-						<td><?= $value['name']; ?></td>
-						<?php endforeach; ?>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1; foreach ($normalized_weights as $index => $row): ?>
-					<tr>
-						<td><?= $no++; ?></td>
-						<td><?= $alternatives[$index]['name']; ?></td>
-						<?php foreach ($row as $value): ?>
-						<td><span class="result" data-original="<?= $value['calc']; ?>"><?= $value['calc']; ?></span>
-						</td>
-						<?php endforeach; ?>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-		<hr>
-		<div class="box-header">
-			<h3 class="box-title fw-bold">4. Menentukan Si dan Ri</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="si-ri">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th colspan="2">Max</th>
-						<th><span class="result"
-								data-original="<?= round($si_ri['si_max'], 2); ?>"><?= round($si_ri['si_max'], 2)?></span>
-						</th>
-						<th><span class="result"
-								data-original="<?= round($si_ri['ri_max'], 2); ?>"><?= round($si_ri['ri_max'], 2)?></span>
-						</th>
-					</tr>
-					<tr>
-						<th colspan="2">Min</th>
-						<th><span class="result"
-								data-original="<?= round($si_ri['si_min'], 2); ?>"><?= round($si_ri['si_min'], 2)?></span>
-						</th>
-						<th><span class="result"
-								data-original="<?= round($si_ri['ri_min'], 2); ?>"><?= round($si_ri['ri_min'], 2)?></span>
-						</th>
-					</tr>
-					<tr>
-						<th>No</th>
-						<th>Sunscreen</th>
-						<th>Si</th>
-						<th>Ri</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1; foreach ($si_ri['si_ri'] as $index => $row): ?>
-					<tr>
-						<td><?= $no++; ?></td>
-						<td><?= $alternatives[$index]['name']; ?></td>
-						<td><span class="result"
-								data-original="<?= round($row['si'], 2); ?>"><?= round($row['si'], 2); ?></span>
-						</td>
-						<td><span class="result"
-								data-original="<?= round($row['ri'], 2); ?>"><?= round($row['ri'], 2); ?></span>
-						</td>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-		<hr>
-		<div class="box-header">
-			<h3 class="box-title fw-bold">5. Hasil perhitungan vikor sesuai nilai veto(v)</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="veto">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th>No</th>
-						<th>Sunscreen</th>
-						<?php foreach ($veto as $value): ?>
-						<th><?= $value; ?></th>
-						<?php endforeach; ?>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1; foreach ($matrix['list'] as $index => $row): ?>
-					<tr>
-						<td><?= $no++; ?></td>
-						<td><?= $alternatives[$index]['name']; ?></td>
-						<?php foreach ($veto as $key => $val): ?>
-						<td><span class="result"
-								data-original="<?= $vikor_result[$key][$index]['calc']; ?>"><?= $vikor_result[$key][$index]['calc']; ?></span>
-						</td>
-						<?php endforeach; ?>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-		<hr>
-		<div class="box-header">
 			<h3 class="box-title fw-bold">6. Sorting</h3>
 		</div>
 		<div class="box-body">
@@ -266,61 +89,21 @@
 				</thead>
 				<tbody>
 					<?php ;$no=1; foreach ($ranked_results['ranked'] as $index => $row): ?>
+					<?php if($no <= 10):?>
 					<tr>
 						<td><?= $no++; ?></td>
 						<td><?= $alternatives[$row['id']]['name']; ?></td>
 						<td><span class="result" data-original="<?= $row['calc']; ?>"><?= $row['calc']; ?></span>
 						</td>
 					</tr>
+					<?php endif;?>
 					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
-		<hr>
-		<div class="box-header">
-			<h3 class="box-title fw-bold">7. Menentukan Acceptable Advantage</h3>
-		</div>
-		<div class="box-body">
-			<table class="table table-bordered table-hover dataTables w-100" id="acceptable">
-				<thead class="bg-gray disabled color-palette">
-					<tr>
-						<th>No</th>
-						<th>DQ</th>
-						<th><?= $acceptable_advantage['dq']; ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no= 1;foreach ($acceptable_advantage['v'] as $key => $val): ?>
-					<tr class="<?= $val['acceptable'] == true ? 'bg-danger' : '' ;?>">
-						<td><?= $no++?></td>
-						<td><?= $val['key']?></td>
-						<td><span class="result" data-original="<?= $val['value']; ?>"><?= $val['value']; ?></span></td>
-					</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-		</div>
-		<hr>
 	</div>
 
 </section>
-<div class="floating-card">
-	<button class="trigger-button"></button>
-	<div class="card-content">
-		<fieldset>
-			<div class="btn-group-custom">
-				<label class="mb-0">
-					<input type="radio" class="radio-group" name="conversion" value="number" checked />
-					<span>Satuan</span>
-				</label>
-				<label class="mb-0">
-					<input type="radio" class="radio-group" name="conversion" value="percentage" />
-					<span>Persen</span>
-				</label>
-			</div>
-		</fieldset>
-	</div>
-</div>
 
 <script>
 	const floatingCard = document.querySelector('.floating-card');
